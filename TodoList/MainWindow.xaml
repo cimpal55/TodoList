@@ -8,6 +8,27 @@
         Loaded="Window_Loaded"
         Title="To Do list" Height="450" Width="800">
     <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="ImageTemplate">
+                <ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Width="20"
+                                   Height="20"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBoxItem>
+                        <Image Source="/Images/1.jpg"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <Image Source="/Images/2.jpg"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <Image Source="/Images/3.jpg"/>
+                    </ComboBoxItem>
+                </ComboBox>
+            </DataTemplate>
+        </Grid.Resources>
         <DataGrid x:Name="ToDoList"
                   FontSize="16" 
                   FontWeight="Bold"
@@ -21,11 +42,14 @@
                 <DataGridCheckBoxColumn Header="Is completed" 
                                         Width="120"
                                         IsReadOnly="False"
-                                        Binding="{Binding Path = IsCompleted, UpdateSourceTrigger=PropertyChanged }"/>
+                                        Binding="{Binding Path = IsCompleted, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Date" 
                                     Width="*"
                                     IsReadOnly="True"
                                     Binding="{Binding Path = Date}"/>
+                <DataGridTemplateColumn Header="Image"
+                                        Width="*"
+                                        CellTemplate="{StaticResource ImageTemplate}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
